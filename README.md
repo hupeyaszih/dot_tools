@@ -36,7 +36,7 @@ Clone the repository and move or link the scripts to a directory in your `$PATH`
 
 ```bash
 git clone https://github.com/hupeyaszih/dot_tools.git
-cd dot-tools
+cd dot_tools
 # Example: Manual link
 ln -sf $(pwd)/language/dict_de.py ~/.local/bin/dict_de
 chmod +x ~/.local/bin/dict_de
