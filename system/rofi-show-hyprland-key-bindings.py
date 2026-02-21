@@ -2,31 +2,26 @@
 
 #!/usr/bin/env python3
 import subprocess
-import re
+import os
 
-# Hyprland config yolu
-config_file = "~/.config/hypr/hyprland.conf"
-
-# Bindleri tutacak liste
 options = []
 
-# Dosyayı oku
-with open(config_file.replace("~", "/home/hupeyaszih")) as f:
+config_file = os.path.expanduser("~/.config/hypr/hyprland.conf")
+
+with open(config_file) as f:
     for line in f:
         line = line.strip()
         if line.startswith("bind"):
             parts = [p.strip() for p in line.replace("bind =", "").split(",")]
             if len(parts) >= 3:
-                key_combo = "+".join(parts[:2])  # modifier + tuş
-                action = parts[2]                # exec, killactive, vs
+                key_combo = "+".join(parts[:2])  
+                action = parts[2]                
 
-                # Eğer exec ise, çalıştırılacak komutu ekle
                 if action == "exec" and len(parts) >= 4:
                     action += f" → {parts[3]}"
 
                 options.append(f"{key_combo} → {action}")
 
-# Rofi ile göster
 try:
     rofi = subprocess.Popen(
         ["rofi", "-dmenu", "-p", "Hypr Bindings:"],

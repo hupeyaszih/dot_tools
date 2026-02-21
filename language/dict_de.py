@@ -1,7 +1,6 @@
 import subprocess
 import requests
 from bs4 import BeautifulSoup
-import re
 
 p = subprocess.Popen(
     ["rofi", "-dmenu", "-p", "DE -> EN (Cambridge):"],
