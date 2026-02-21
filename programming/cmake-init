@@ -1,0 +1,88 @@
+#!/bin/bash
+
+# Get the name of the current directory as the project name
+PROJECT_NAME=$(basename "$PWD")
+
+# Language Selection
+echo "Select the project language for '$PROJECT_NAME':"
+# Note: select prompt looks better in bash, but works fine called from fish
+PS3="Enter choice (1 or 2): "
+select lang in "C" "CXX"; do
+    case $lang in
+        C) 
+            LANG_EXT="c"
+            STANDARD="11"
+            break ;;
+        CXX) 
+            LANG_EXT="cpp"
+            STANDARD="20"
+            break ;;
+        *) 
+            echo "Invalid option. Please choose 1 or 2." ;;
+    esac
+done
+
+# Create Directory Structure in the current folder
+mkdir -p "src"
+mkdir -p "include"
+mkdir -p "build"
+
+# Create CMakeLists.txt
+cat <<EOF > "CMakeLists.txt"
+cmake_minimum_required(VERSION 3.16)
+
+project($PROJECT_NAME LANGUAGES $lang)
+
+set(CMAKE_$lang\_STANDARD $STANDARD)
+set(CMAKE_$lang\_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+add_executable($PROJECT_NAME
+    src/main.$LANG_EXT
+)
+
+target_include_directories($PROJECT_NAME
+    PRIVATE
+        \${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+EOF
+
+# Create a boilerplate main file if it doesn't exist
+if [ ! -f "src/main.$LANG_EXT" ]; then
+    if [ "$lang" == "CXX" ]; then
+        cat <<EOF > "src/main.cpp"
+#include <iostream>
+
+int main() {
+    std::cout << "Hello from $PROJECT_NAME (C++)!" << std::endl;
+    return 0;
+}
+EOF
+    else
+        cat <<EOF > "src/main.c"
+#include <stdio.h>
+
+int main() {
+    printf("Hello from $PROJECT_NAME (C)!\\n");
+    return 0;
+}
+EOF
+    fi
+fi
+
+# Create a basic .gitignore to keep the repo clean
+cat <<EOF > ".gitignore"
+build/
+.cache/
+compile_commands.json
+EOF
+
+echo "--------------------------------------"
+echo "✅ Project '$PROJECT_NAME' initialized!"
+echo "📂 Structure created in: $PWD"
+echo "   ├── CMakeLists.txt"
+echo "   ├── include/"
+echo "   ├── src/main.$LANG_EXT"
+echo "   └── .gitignore"
+echo "--------------------------------------"
+echo "Next steps: mkdir build && cd build && cmake .. && make"
