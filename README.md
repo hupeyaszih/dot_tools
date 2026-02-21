@@ -1,6 +1,7 @@
 # 🛠️ dot-tools
 
-A collection of lightweight, terminal-centric scripts designed to supercharge the Hyprland and Arch Linux workflow. These tools prioritize speed, minimalism, and Rofi integration.
+## 🛠️ About This Project
+Everything in this repository is **handmade**. I built these tools from scratch to solve specific friction points in my daily Arch Linux workflow—from scraping dictionaries without leaving the terminal to managing C/C++ boilerplates.
 
 ![Platform](https://img.shields.io/badge/Platform-Arch_Linux-blue?logo=arch-linux)
 ![WM](https://img.shields.io/badge/WM-Hyprland-00a2ff?logo=hyprland)

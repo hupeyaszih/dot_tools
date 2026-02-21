@@ -77,12 +77,4 @@ build/
 compile_commands.json
 EOF
 
-echo "--------------------------------------"
 echo "✅ Project '$PROJECT_NAME' initialized!"
-echo "📂 Structure created in: $PWD"
-echo "   ├── CMakeLists.txt"
-echo "   ├── include/"
-echo "   ├── src/main.$LANG_EXT"
-echo "   └── .gitignore"
-echo "--------------------------------------"
-echo "Next steps: mkdir build && cd build && cmake .. && make"
