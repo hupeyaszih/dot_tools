@@ -23,6 +23,7 @@ Everything in this repository is **handmade**. I built these tools from scratch 
 - **`cmake-init`**: A boilerplate generator for C/C++ projects to get you coding in seconds.
 
 ---
+## 🚀 Installation
 
 ### 1. Prerequisites
 Make sure you have the following installed on your Arch system:
