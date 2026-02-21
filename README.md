@@ -12,7 +12,7 @@ Everything in this repository is **handmade**. I built these tools from scratch 
 
 ### 🌍 Language & Learning
 - **`dict_de`**: Scrapes Cambridge Dictionary for German-English. Provides definitions, gender info, and rich example sentences.
-- **`dict_en`**: Quick English-English dictionary scraper for definitions and usage examples.
+- **`dict_en`**: Scrapes Cambridge Dictionary for English-English. Provides definitions, example usages etc.
 
 ### 🔍 System & Search
 - **`rofi-fd`**: Blazing fast file searching using `fd` integrated into Rofi.
@@ -29,3 +29,15 @@ Everything in this repository is **handmade**. I built these tools from scratch 
 Make sure you have the following installed on your Arch system:
 ```bash
 sudo pacman -S rofi fd ripgrep python-requests python-beautifulsoup4
+```
+
+### 2. Setup
+Clone the repository and move or link the scripts to a directory in your `$PATH` (e.g., `~/.local/bin`):
+
+```bash
+git clone https://github.com/hupeyaszih/dot_tools.git
+cd dot-tools
+# Example: Manual link
+ln -sf $(pwd)/language/dict_de.py ~/.local/bin/dict_de
+chmod +x ~/.local/bin/dict_de
+```
